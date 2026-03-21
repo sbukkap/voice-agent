@@ -31,10 +31,16 @@ async def create_event(request: Request):
     time_str = args.get("time") # Expected: HH:MM:SS
     title = args.get("title", f"AI Meeting with {name}")
 
+    # NEW: Safely get the duration and ensure it is an integer
+    try:
+        duration_minutes = int(args.get("duration", 30))
+    except (ValueError, TypeError):
+        duration_minutes = 30 # Fallback to 30 mins if the LLM hallucinates
+
     try:
         start_datetime = f"{date_str}T{time_str}-04:00" # Adjust -04:00 for your local timezone
         start_time_obj = datetime.datetime.fromisoformat(start_datetime)
-        end_time_obj = start_time_obj + datetime.timedelta(minutes=30)
+        end_time_obj = start_time_obj + datetime.timedelta(minutes=duration_minutes)
         
         event = {
           'summary': title,
@@ -64,6 +70,12 @@ async def reschedule_event(request: Request):
     new_time_str = args.get("new_time") 
     title = args.get("title", f"Rescheduled AI Meeting with {name}")
 
+    # NEW: Safely get the duration and ensure it is an integer
+    try:
+        duration_minutes = int(args.get("duration", 30))
+    except (ValueError, TypeError):
+        duration_minutes = 30 # Fallback to 30 mins if the LLM hallucinates
+
     try:
         # 1. Search the calendar for any upcoming events with this user's name
         now = datetime.datetime.utcnow().isoformat() + 'Z'
@@ -86,7 +98,7 @@ async def reschedule_event(request: Request):
         # 3. Create the brand new event at the new time
         start_datetime = f"{new_date_str}T{new_time_str}-04:00" 
         start_time_obj = datetime.datetime.fromisoformat(start_datetime)
-        end_time_obj = start_time_obj + datetime.timedelta(minutes=30)
+        end_time_obj = start_time_obj + datetime.timedelta(minutes=duration_minutes)
         
         new_event = {
           'summary': title,
