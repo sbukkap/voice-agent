@@ -2,8 +2,8 @@
 
 A voice assistant that books, reschedules, and manages calendar appointments through natural conversation.
 
-**Loom Video Recording:** [Insert Link]
-**Try it live:** [Insert VAPI Share Link Here]
+**Loom Video Recording:** https://www.loom.com/share/e224390511394ccba92d204606c114a5
+**Try it live:** https://vapi.ai?demo=true&shareKey=c014239e-a84f-4736-8def-7e7b7fff54d0&assistantId=a24da371-30d4-431c-967c-bae2a16a9c56
 
 ---
 
