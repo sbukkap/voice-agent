@@ -7,6 +7,14 @@ A voice assistant that books, reschedules, and manages calendar appointments thr
 
 ---
 
+### How to test it 
+1. Click the live link above and allow microphone access.
+2. Try a standard booking: *"I'd like to book a 45-minute meeting for next Wednesday at 2 PM."*
+3. Try testing the guardrails: Ask for a meeting on a Saturday, or try changing your mind about the time mid-sentence.
+4. Try a reschedule: Start a new call and say, *"I need to reschedule my Wednesday meeting to Thursday at 10 AM."* ```
+
+---
+
 ## How it works
 
 The project is split into two parts that talk to each other:
